@@ -1,5 +1,11 @@
 # Reactive Ops Technical Challenge
 
+## Wrapper Usage
+- To utilize, simply enter:
+```bash
+./create-server.sh
+```
+
 ## How to Use
 - Create aws key pair
   - I performed via their web console on the appropriate region
@@ -11,6 +17,13 @@
   - TF_VAR_priv_key_path: Path to a suitable Private key for ssh access
   - TF_VAR_region: region to deploy ec2 instance into
   - TF_VAR_username: key-pair username from aws key pair creation
+- Application Requirements
+  - Terraform
+    - Installation: [Here](https://learn.hashicorp.com/terraform/getting-started/install.html)
+  - AWSCLI
+    - Installation: Package Manager or [Here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+  - curl
+    - Installation: Package Manager
 - Run Terraform commands
   - In this case, run
     ```bash
@@ -18,6 +31,11 @@
     ```
 - If successful, stdout should have an output variable that is the public ip of
   the instance
+  - You can also query the succesful provisioning via terraform output from the 
+    current directory and will find an instance_ip variable like so
+    ```bash
+    terraform output | awk '/instance*/ {print $3}'
+    ```
 - To test access, perform
   ```bash
   curl <public_ip_here>
