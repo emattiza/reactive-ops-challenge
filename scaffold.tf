@@ -1,17 +1,26 @@
 variable "username" {}
 variable "region" {}
 variable "priv_key_path" {}
+variable "pub_key" {}
+variable "key_pair_name" {}
 
 provider "aws" {
   region = "${var.region}"
 }
 
+resource "aws_key_pair" "deployer" {
+  key_name = "${var.key_pair_name}"
+  public_key = "${var.pub_key}"
+}
+resource "aws_default_vpc" "default" {
+
+}
 resource "aws_instance" "webhost" {
-  ami           = "ami-0c55b159cbfafe1f0"
+  ami           = "ami-090f10efc254eaf55"
   instance_type = "t2.micro"
   associate_public_ip_address = true
   vpc_security_group_ids = ["${aws_security_group.webhost.id}"]
-  key_name = "${var.username}"
+  key_name = "${var.key_pair_name}"
   provisioner "salt-masterless" {
     "local_state_tree" = "./salt"
     "remote_state_tree" = "/srv/salt"
@@ -25,6 +34,7 @@ resource "aws_instance" "webhost" {
 }
 resource "aws_security_group" "webhost" {
   name = "webhost"
+  vpc_id = "${aws_default_vpc.default.id}"
   description = "Allow inbound traffic"
   ingress {
       from_port   = 22
@@ -50,4 +60,8 @@ resource "aws_security_group" "webhost" {
 
 output "instance-ip" {
   value = "${aws_instance.webhost.public_ip}"
+}
+
+output "key-pair-name" {
+  value = "${aws_key_pair.deployer.key_name}"
 }
