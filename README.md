@@ -10,7 +10,9 @@
 - [x] Publish to docker registry
 - [x] Manually create Key Pairs in EC2 for myself (unsure of automation
   available)
-- [ ] Automate Instance/SecGroup/Ingress/Egress creation via Terraform
+- [x] Automate Instance/SecGroup/Ingress/Egress creation via Terraform
+- [x] Automate Docker Installation on webhost
+- [x] Automate Docker container pull, start, and network exposing
 
 ## User Configuration
-- [ ] Handle environment variable definition (TF, AWS)
+- [x] Handle environment variable definition (TF, AWS)

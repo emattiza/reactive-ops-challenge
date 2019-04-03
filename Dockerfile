@@ -8,4 +8,4 @@ RUN pipenv install --system --deploy
 EXPOSE 8000
 RUN pipenv check
 RUN pipenv graph
-CMD [ "pipenv", "run", "python", "app.py" ]
+CMD [ "pipenv", "run", "python", "app.py"]
