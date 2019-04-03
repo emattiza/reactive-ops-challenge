@@ -1,0 +1,6 @@
+tags
+*.tfstate*
+.env*
+.terraform
+.vscode
+*-credentials*
