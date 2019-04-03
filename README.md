@@ -7,16 +7,14 @@
 ```
 
 ## How to Use
-- Create aws key pair
-  - I performed via their web console on the appropriate region
-  - I believe this can be automated via the aws cli or even terraform itself
 - Configure env vars (via export, .envrc and direnv, etc.)
   - AWS_ACCESS_KEY_ID: Set to suitable access key id
   - AWS_SECRET_ACCESS_KEY: Set to AWS Secret Key
   - AWS_DEFAULT_REGION: Set to default region on access key id
   - TF_VAR_priv_key_path: Path to a suitable Private key for ssh access
-  - TF_VAR_region: region to deploy ec2 instance into
   - TF_VAR_username: key-pair username from aws key pair creation
+  - TF_VAR_pub_key: public key of ssh keypair on host
+  - TF_VAR_key_pair_name: identifying name of keypair
 - Application Requirements
   - Terraform
     - Installation: [Here](https://learn.hashicorp.com/terraform/getting-started/install.html)
@@ -24,6 +22,8 @@
     - Installation: Package Manager or [Here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
   - curl
     - Installation: Package Manager
+
+## What create_server wraps
 - Run Terraform commands
   - In this case, run
     ```bash
