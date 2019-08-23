@@ -18,7 +18,7 @@
 #      REVISION:  ---
 #===============================================================================
 
-set -o nounset                              # Treat unset variables as an error
+# Treat unset variables as an error
 
 [ -z "$AWS_ACCESS_KEY_ID" ] && echo "Set AWS_ACCESS_KEY_ID" && exit 1;
 [ -z "$AWS_SECRET_ACCESS_KEY" ] && echo "Set AWS_SECRET_ACCESS_KEY" && exit 1;
